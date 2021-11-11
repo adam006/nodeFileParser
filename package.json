@@ -1,0 +1,20 @@
+{
+  "dependencies": {
+    "csv": "^5.5.3",
+    "csv-parse": "^4.16.3",
+    "csv-parser": "^3.0.0",
+    "fast-csv": "^4.3.6",
+    "immutable": "^4.0.0",
+    "node-csv": "^0.1.2"
+  },
+  "name": "first-app",
+  "version": "1.0.0",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
