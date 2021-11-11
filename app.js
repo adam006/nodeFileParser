@@ -5,6 +5,7 @@ const fs = require("fs");
 const util = require("util");
 const { EOL } = require("os");
 const parse = require("csv-parse");
+const config = require("./config.json");
 // const parse = require("csv-parse/lib/sync");
 
 run().then(r => console.log('done'));
@@ -13,7 +14,7 @@ async function run () {
   let customers = await getCustomerList();
 
   const readDir = util.promisify(fs.readdir);
-  let files = await readDir("/Users/adamdavenport/Desktop/PagesSplit");
+  let files = await readDir(config.pdfFilesPath);
 
   let csv = buildCsvHeader();
   let map = mapAndGroupFiles(files);
@@ -23,7 +24,7 @@ async function run () {
     csv += buildCsvRow(customer, sorted);
   }
   const writeFile = util.promisify(fs.writeFile);
-  await writeFile("/Users/adamdavenport/Desktop/nodeCsv.csv", csv);
+  await writeFile(config.outputPath, csv);
 };
 
 function buildCsvRow(customer, pages) {
@@ -67,7 +68,7 @@ function buildCsvHeader() {
 async function getCustomerList() {
   const readFile = util.promisify(fs.readFile);
   let customers = await readFile(
-    "/Users/adamdavenport/Desktop/CustomerList.csv",
+    config.customerList,
     "utf-8"
   );
   const parser = util.promisify(parse);
